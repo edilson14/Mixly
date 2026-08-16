@@ -1,5 +1,7 @@
 # Mixly
 
+**English** | [Português (BR)](README.pt-br.md)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)
 [![GitHub release](https://img.shields.io/github/v/release/edilson14/Mixly)](https://github.com/edilson14/Mixly/releases/latest)
