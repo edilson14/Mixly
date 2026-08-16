@@ -55,4 +55,4 @@ See [DISTRIBUTION.md](DISTRIBUTION.md) for the full build, signing, and notariza
 
 ## License
 
-No license has been chosen yet for this project.
+MIT — see [LICENSE](LICENSE).
