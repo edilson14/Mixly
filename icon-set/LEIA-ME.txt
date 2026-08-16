@@ -1,0 +1,18 @@
+Como gerar o .icns final (usado pelo macOS):
+
+1. Renomeie os arquivos "-2x" para "@2x" (ex: icon_16x16-2x.png -> icon_16x16@2x.png).
+2. Crie uma pasta "Mixly.iconset" com esses arquivos dentro, nomeados assim:
+   icon_16x16.png
+   icon_16x16@2x.png
+   icon_32x32.png
+   icon_32x32@2x.png
+   icon_128x128.png
+   icon_128x128@2x.png
+   icon_256x256.png
+   icon_256x256@2x.png
+   icon_512x512.png
+   icon_512x512@2x.png
+3. No Terminal: iconutil -c icns Mixly.iconset
+   Isso gera Mixly.icns — arraste para o "App Icon" no Assets.xcassets do Xcode.
+
+O icon_64x64.png e icon_1024x1024.png não entram no iconset (o 1024 pode ser usado direto como imagem de marketing/App Store).

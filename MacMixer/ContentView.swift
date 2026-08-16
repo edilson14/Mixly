@@ -1,21 +1,29 @@
-//
-//  ContentView.swift
-//  MacMixer
-//
-//  Created by edilson14 on 23/07/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 0) {
+            // Header
+            HStack {
+                Text("🔊 Mac Mixer")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Spacer()
+            }
+            .padding()
+            .background(Color(.controlBackgroundColor))
+            
+            ScrollView {
+                VStack(spacing: 0) {
+                    // Volume do Sistema
+                    SystemVolumeView()
+                    
+                    // AudioKit - Controle Real por App
+                    AudioKitAppView()
+                }
+            }
         }
-        .padding()
+        .frame(minWidth: 500, minHeight: 600)
     }
 }
 

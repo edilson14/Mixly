@@ -6,43 +6,72 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1B7295EA2BC7DEFF1341545A /* AudioUnitController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */; };
+		22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */; };
+		2DCBA82B07F54D93E8E4FD5D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429ACCF816833B98B59D90D5 /* AudioManager.swift */; };
+		343475F3AAB7F6839B51841A /* SystemVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */; };
+		351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */; };
+		48240D7201639E102852A54D /* ProcessTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */; };
+		570222DAEFC5E29B16E712A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7FFBBB296BBEF6823B025 /* ContentView.swift */; };
+		595F09708FFBC25BD33A07AF /* MixlyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8586D173F679381EBE6C0F3 /* MixlyApp.swift */; };
+		77B427534831892178611FCF /* CoreAudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC16F63E090A80ED49FFD647 /* CoreAudioManager.swift */; };
+		B0C1B47BA43A8FE3105916FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2DD825741B8EE63AC7D76D /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		791B90973012DCF300DC1E1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 791B90813012DCF100DC1E1F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 791B90883012DCF100DC1E1F;
-			remoteInfo = MacMixer;
+			remoteInfo = Mixly;
 		};
 		791B90A13012DCF300DC1E1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 791B90813012DCF100DC1E1F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 791B90883012DCF100DC1E1F;
-			remoteInfo = MacMixer;
+			remoteInfo = Mixly;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		791B90893012DCF100DC1E1F /* MacMixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacMixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		791B90963012DCF300DC1E1F /* MacMixerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacMixerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		791B90A03012DCF300DC1E1F /* MacMixerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacMixerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitAppView.swift; path = MacMixer/AudioKitAppView.swift; sourceTree = "<group>"; };
+		429ACCF816833B98B59D90D5 /* AudioManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = MacMixer/AudioManager.swift; sourceTree = "<group>"; };
+		4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProcessTap.swift; path = MacMixer/ProcessTap.swift; sourceTree = "<group>"; };
+		4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitController.swift; path = MacMixer/AudioKitController.swift; sourceTree = "<group>"; };
+		4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemVolumeView.swift; path = MacMixer/SystemVolumeView.swift; sourceTree = "<group>"; };
+		791B90893012DCF100DC1E1F /* Mixly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		791B90963012DCF300DC1E1F /* MixlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		791B90A03012DCF300DC1E1F /* MixlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C2DD825741B8EE63AC7D76D /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MacMixer/Assets.xcassets; sourceTree = "<group>"; };
+		BFD7FFBBB296BBEF6823B025 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = MacMixer/ContentView.swift; sourceTree = "<group>"; };
+		EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AudioUnitController.m; path = MacMixer/AudioUnitController.m; sourceTree = "<group>"; };
+		EC16F63E090A80ED49FFD647 /* CoreAudioManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreAudioManager.swift; path = MacMixer/CoreAudioManager.swift; sourceTree = "<group>"; };
+		F8586D173F679381EBE6C0F3 /* MixlyApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MixlyApp.swift; path = MacMixer/MixlyApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		791B908B3012DCF100DC1E1F /* MacMixer */ = {
+		791B908B3012DCF100DC1E1F /* Mixly */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MacMixer;
+			exceptions = (
+			);
+			path = Mixly;
 			sourceTree = "<group>";
 		};
-		791B90993012DCF300DC1E1F /* MacMixerTests */ = {
+		791B90993012DCF300DC1E1F /* MixlyTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MacMixerTests;
+			exceptions = (
+			);
+			path = MixlyTests;
 			sourceTree = "<group>";
 		};
-		791B90A33012DCF300DC1E1F /* MacMixerUITests */ = {
+		791B90A33012DCF300DC1E1F /* MixlyUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MacMixerUITests;
+			exceptions = (
+			);
+			path = MixlyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,19 +104,29 @@
 		791B90803012DCF100DC1E1F = {
 			isa = PBXGroup;
 			children = (
-				791B908B3012DCF100DC1E1F /* MacMixer */,
-				791B90993012DCF300DC1E1F /* MacMixerTests */,
-				791B90A33012DCF300DC1E1F /* MacMixerUITests */,
+				791B908B3012DCF100DC1E1F /* Mixly */,
+				791B90993012DCF300DC1E1F /* MixlyTests */,
+				791B90A33012DCF300DC1E1F /* MixlyUITests */,
 				791B908A3012DCF100DC1E1F /* Products */,
+				F8586D173F679381EBE6C0F3 /* MixlyApp.swift */,
+				BFD7FFBBB296BBEF6823B025 /* ContentView.swift */,
+				03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */,
+				4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */,
+				429ACCF816833B98B59D90D5 /* AudioManager.swift */,
+				EC16F63E090A80ED49FFD647 /* CoreAudioManager.swift */,
+				4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */,
+				4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */,
+				EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */,
+				9C2DD825741B8EE63AC7D76D /* Assets.xcassets */,
 			);
 			sourceTree = "<group>";
 		};
 		791B908A3012DCF100DC1E1F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				791B90893012DCF100DC1E1F /* MacMixer.app */,
-				791B90963012DCF300DC1E1F /* MacMixerTests.xctest */,
-				791B90A03012DCF300DC1E1F /* MacMixerUITests.xctest */,
+				791B90893012DCF100DC1E1F /* Mixly.app */,
+				791B90963012DCF300DC1E1F /* MixlyTests.xctest */,
+				791B90A03012DCF300DC1E1F /* MixlyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +134,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		791B90883012DCF100DC1E1F /* MacMixer */ = {
+		791B90883012DCF100DC1E1F /* Mixly */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 791B90AA3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MacMixer" */;
+			buildConfigurationList = 791B90AA3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "Mixly" */;
 			buildPhases = (
 				791B90853012DCF100DC1E1F /* Sources */,
 				791B90863012DCF100DC1E1F /* Frameworks */,
@@ -108,18 +147,16 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				791B908B3012DCF100DC1E1F /* MacMixer */,
+				791B908B3012DCF100DC1E1F /* Mixly */,
 			);
-			name = MacMixer;
-			packageProductDependencies = (
-			);
-			productName = MacMixer;
-			productReference = 791B90893012DCF100DC1E1F /* MacMixer.app */;
+			name = Mixly;
+			productName = Mixly;
+			productReference = 791B90893012DCF100DC1E1F /* Mixly.app */;
 			productType = "com.apple.product-type.application";
 		};
-		791B90953012DCF300DC1E1F /* MacMixerTests */ = {
+		791B90953012DCF300DC1E1F /* MixlyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 791B90AD3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MacMixerTests" */;
+			buildConfigurationList = 791B90AD3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MixlyTests" */;
 			buildPhases = (
 				791B90923012DCF300DC1E1F /* Sources */,
 				791B90933012DCF300DC1E1F /* Frameworks */,
@@ -131,18 +168,16 @@
 				791B90983012DCF300DC1E1F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				791B90993012DCF300DC1E1F /* MacMixerTests */,
+				791B90993012DCF300DC1E1F /* MixlyTests */,
 			);
-			name = MacMixerTests;
-			packageProductDependencies = (
-			);
-			productName = MacMixerTests;
-			productReference = 791B90963012DCF300DC1E1F /* MacMixerTests.xctest */;
+			name = MixlyTests;
+			productName = MixlyTests;
+			productReference = 791B90963012DCF300DC1E1F /* MixlyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		791B909F3012DCF300DC1E1F /* MacMixerUITests */ = {
+		791B909F3012DCF300DC1E1F /* MixlyUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 791B90B03012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MacMixerUITests" */;
+			buildConfigurationList = 791B90B03012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MixlyUITests" */;
 			buildPhases = (
 				791B909C3012DCF300DC1E1F /* Sources */,
 				791B909D3012DCF300DC1E1F /* Frameworks */,
@@ -154,13 +189,11 @@
 				791B90A23012DCF300DC1E1F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				791B90A33012DCF300DC1E1F /* MacMixerUITests */,
+				791B90A33012DCF300DC1E1F /* MixlyUITests */,
 			);
-			name = MacMixerUITests;
-			packageProductDependencies = (
-			);
-			productName = MacMixerUITests;
-			productReference = 791B90A03012DCF300DC1E1F /* MacMixerUITests.xctest */;
+			name = MixlyUITests;
+			productName = MixlyUITests;
+			productReference = 791B90A03012DCF300DC1E1F /* MixlyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -195,14 +228,17 @@
 			);
 			mainGroup = 791B90803012DCF100DC1E1F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				791B90E73012E36800DC1E1F /* XCRemoteSwiftPackageReference "AudioKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 791B908A3012DCF100DC1E1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				791B90883012DCF100DC1E1F /* MacMixer */,
-				791B90953012DCF300DC1E1F /* MacMixerTests */,
-				791B909F3012DCF300DC1E1F /* MacMixerUITests */,
+				791B90883012DCF100DC1E1F /* Mixly */,
+				791B90953012DCF300DC1E1F /* MixlyTests */,
+				791B909F3012DCF300DC1E1F /* MixlyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0C1B47BA43A8FE3105916FD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +273,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595F09708FFBC25BD33A07AF /* MixlyApp.swift in Sources */,
+				570222DAEFC5E29B16E712A5 /* ContentView.swift in Sources */,
+				351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */,
+				22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */,
+				2DCBA82B07F54D93E8E4FD5D /* AudioManager.swift in Sources */,
+				77B427534831892178611FCF /* CoreAudioManager.swift in Sources */,
+				48240D7201639E102852A54D /* ProcessTap.swift in Sources */,
+				343475F3AAB7F6839B51841A /* SystemVolumeView.swift in Sources */,
+				1B7295EA2BC7DEFF1341545A /* AudioUnitController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,12 +304,12 @@
 /* Begin PBXTargetDependency section */
 		791B90983012DCF300DC1E1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 791B90883012DCF100DC1E1F /* MacMixer */;
+			target = 791B90883012DCF100DC1E1F /* Mixly */;
 			targetProxy = 791B90973012DCF300DC1E1F /* PBXContainerItemProxy */;
 		};
 		791B90A23012DCF300DC1E1F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 791B90883012DCF100DC1E1F /* MacMixer */;
+			target = 791B90883012DCF100DC1E1F /* Mixly */;
 			targetProxy = 791B90A13012DCF300DC1E1F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -394,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MacMixer/MacMixer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -403,19 +450,21 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MacMixer/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sound.MacMixer;
+				PRODUCT_BUNDLE_IDENTIFIER = sound.Mixly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MacMixer/MacMixer-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -426,6 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MacMixer/MacMixer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -435,19 +485,21 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MacMixer/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sound.MacMixer;
+				PRODUCT_BUNDLE_IDENTIFIER = sound.Mixly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MacMixer/MacMixer-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -463,14 +515,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sound.MacMixerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = sound.MixlyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacMixer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MacMixer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mixly.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mixly";
 			};
 			name = Debug;
 		};
@@ -484,14 +536,14 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sound.MacMixerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = sound.MixlyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MacMixer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MacMixer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mixly.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Mixly";
 			};
 			name = Release;
 		};
@@ -503,14 +555,14 @@
 				DEVELOPMENT_TEAM = K77CDV5KL4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sound.MacMixerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = sound.MixlyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = MacMixer;
+				TEST_TARGET_NAME = Mixly;
 			};
 			name = Debug;
 		};
@@ -522,14 +574,14 @@
 				DEVELOPMENT_TEAM = K77CDV5KL4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = sound.MacMixerUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = sound.MixlyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = MacMixer;
+				TEST_TARGET_NAME = Mixly;
 			};
 			name = Release;
 		};
@@ -545,7 +597,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		791B90AA3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MacMixer" */ = {
+		791B90AA3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "Mixly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				791B90AB3012DCF300DC1E1F /* Debug */,
@@ -554,7 +606,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		791B90AD3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MacMixerTests" */ = {
+		791B90AD3012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MixlyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				791B90AE3012DCF300DC1E1F /* Debug */,
@@ -563,7 +615,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		791B90B03012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MacMixerUITests" */ = {
+		791B90B03012DCF300DC1E1F /* Build configuration list for PBXNativeTarget "MixlyUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				791B90B13012DCF300DC1E1F /* Debug */,
@@ -573,6 +625,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		791B90E73012E36800DC1E1F /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 791B90813012DCF100DC1E1F /* Project object */;
 }
