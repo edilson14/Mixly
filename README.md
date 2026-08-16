@@ -1,17 +1,24 @@
 # Mixly
 
-Mixly is a macOS app that lets you control the volume of individual applications, not just the system volume as a whole — similar to Windows' per-app volume mixer.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)
+
+**Mixly is a per-app volume mixer for macOS** — it lets you control the volume of individual applications independently, the same way Windows' built-in volume mixer works. macOS has never shipped this natively; Mixly adds it as a small menu bar app.
+
+Playing music in one app while a video call is loud in another? Turn one down without touching the other, straight from the menu bar — no need to pause anything or dig through each app's own volume setting.
+
+![Mixly menu bar popup — dragging Discord's volume down and Chrome's volume up independently](docs/demo.gif)
 
 ## Features
 
-- **System volume control** — read and set the default output device's volume.
 - **Per-app volume mixing** — see every app currently producing audio and adjust its volume (or mute it) independently, without touching the others.
-- **Live audio activity** — apps are flagged as "playing" in real time based on actual audio output, and the list refreshes automatically as apps start/stop making sound.
+- **Lives in the menu bar** — no dock icon, no window to manage. Click the icon, adjust, done.
+- **Live audio activity** — the list refreshes automatically as apps start making sound.
 - **Helper process grouping** — auxiliary processes (e.g. browser helpers) are grouped under their parent app, so multiple processes from the same app appear as one entry.
 
 ## How it works
 
-macOS doesn't expose a native per-app volume mixer, so Mixly builds one using **Core Audio Process Taps** (macOS 14.4+):
+macOS doesn't expose a native per-app volume mixer, so Mixly builds one using **Core Audio Process Taps**:
 
 1. It enumerates the audio-producing processes registered with the system HAL (`kAudioHardwarePropertyProcessObjectList`) and groups them by owning application.
 2. When you change an app's volume, Mixly creates a **process tap** (`ProcessTap.swift`) for that app's processes with `muteBehavior = .mutedWhenTapped`, which silences the app's original output.
@@ -20,10 +27,12 @@ macOS doesn't expose a native per-app volume mixer, so Mixly builds one using **
 
 This means Mixly doesn't just change a volume value — it actually re-renders each app's captured audio stream at the gain you set.
 
+> **Note:** macOS reports an app's audio session as active for as long as the app keeps it open, which for most apps includes while paused — not just while actual sound is playing. So an app may stay in Mixly's list for a while after you pause it; it disappears once the app fully releases its audio session (usually on quit).
+
 ## Requirements
 
-- macOS 14.4 or later (Process Tap APIs)
-- Xcode 15.4+ to build
+- macOS 26 (Tahoe) or later
+- Xcode 26+ to build
 - "Audio Capture" permission, granted on first use via **System Settings → Privacy & Security → Screen & System Audio Recording**
 
 ## Building
@@ -46,12 +55,11 @@ See [DISTRIBUTION.md](DISTRIBUTION.md) for the full build, signing, and notariza
 
 | File | Purpose |
 |---|---|
+| `MixlyApp.swift` | App entry point — sets up the `MenuBarExtra` scene |
 | `AudioKitController.swift` | Discovers audio processes, groups them by app, and manages taps |
 | `ProcessTap.swift` | Wraps `AudioHardwareCreateProcessTap` and the aggregate device used to re-render audio with gain |
-| `CoreAudioManager.swift` | Reads/sets the system output device's volume |
 | `AudioKitAppView.swift` | Per-app mixer UI (list, sliders, mute) |
-| `SystemVolumeView.swift` | System volume UI |
-| `ContentView.swift` | Root view combining system + per-app controls |
+| `ContentView.swift` | Root view of the menu bar popover |
 
 ## License
 
