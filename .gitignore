@@ -1,0 +1,30 @@
+# Xcode
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+.build/
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Swift Package Manager
+.swiftpm/
+
+# Distribution artifacts
+*.dmg
+*.pkg
+*.ipa
+*.zip
+
+# macOS
+.DS_Store
+
+# Provisioning
+*.mobileprovision
+*.p12
+*.cer
