@@ -1,140 +1,113 @@
 import SwiftUI
 
 struct AudioKitAppView: View {
-    @StateObject private var controller = AudioKitController.shared
+    @EnvironmentObject private var controller: AudioKitController
+    @Namespace private var glassNamespace
+
+    private let accentBlue = Color(red: 0.35, green: 0.52, blue: 0.98)
 
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Text("Volume por Aplicação")
-                    .font(.headline)
-                    .foregroundColor(.gray)
-                Spacer()
-                Text("\(controller.apps.count)")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-
+        VStack(spacing: 16) {
             if let error = controller.lastError {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.orange)
                     Text(error)
-                        .font(.caption)
+                        .font(.system(size: 12))
                         .foregroundColor(.orange)
                     Spacer()
                 }
-                .padding(10)
-                .background(Color.orange.opacity(0.1))
-                .cornerRadius(8)
             }
 
             if controller.apps.isEmpty {
-                VStack(spacing: 12) {
-                    Image(systemName: "app.dashed")
-                        .font(.system(size: 36))
-                        .foregroundColor(.gray)
-                    Text("Nenhuma aplicação com áudio detectada")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    Text("Reproduza algum áudio para a aplicação aparecer aqui")
-                        .font(.caption2)
-                        .foregroundColor(.gray)
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color(.controlBackgroundColor))
-                .cornerRadius(8)
+                Text("Nenhuma aplicação com áudio detectada")
+                    .font(.system(size: 12.5))
+                    .foregroundColor(.white.opacity(0.4))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 24)
             } else {
-                VStack(spacing: 8) {
-                    ForEach(controller.apps) { app in
-                        AudioKitAppRow(
-                            app: app,
-                            onVolumeChange: { newVolume in
-                                controller.setVolume(for: app.bundleIdentifier, volume: Float(newVolume))
-                            },
-                            onMuteToggle: {
-                                if app.isMuted {
-                                    controller.unmuteApp(bundleID: app.bundleIdentifier)
-                                } else {
-                                    controller.muteApp(bundleID: app.bundleIdentifier)
+                // GlassEffectContainer agrupa os cards para que o blur/luz
+                // seja renderizado em um único passe e permite morphing
+                // suave quando um item aparece/desaparece da lista.
+                GlassEffectContainer(spacing: 12) {
+                    VStack(spacing: 12) {
+                        ForEach(controller.apps) { app in
+                            AudioKitAppRow(
+                                app: app,
+                                accentColor: accentBlue,
+                                namespace: glassNamespace,
+                                onVolumeChange: { newVolume in
+                                    controller.setVolume(for: app.bundleIdentifier, volume: Float(newVolume))
+                                },
+                                onMuteToggle: {
+                                    if app.isMuted {
+                                        controller.unmuteApp(bundleID: app.bundleIdentifier)
+                                    } else {
+                                        controller.muteApp(bundleID: app.bundleIdentifier)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }
         }
-        .padding()
+        .padding(.horizontal, 18)
+        .padding(.vertical, 16)
+        .onAppear {
+            controller.refresh()
+        }
     }
 }
 
 struct AudioKitAppRow: View {
     let app: AppAudioInfo
+    let accentColor: Color
+    let namespace: Namespace.ID
     let onVolumeChange: (Double) -> Void
     let onMuteToggle: () -> Void
 
     @State private var volume: Double = 1.0
 
+    private var shortName: String {
+        app.name.components(separatedBy: " ").last ?? app.name
+    }
+
     var body: some View {
-        VStack(spacing: 12) {
-            // App Header
-            HStack(spacing: 12) {
+        HStack(alignment: .center, spacing: 12) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                    .fill(Color.white)
                 if let icon = app.icon {
                     Image(nsImage: icon)
                         .resizable()
-                        .frame(width: 40, height: 40)
-                        .cornerRadius(6)
+                        .aspectRatio(contentMode: .fill)
+
                 } else {
                     Image(systemName: "app.fill")
-                        .font(.system(size: 28))
-                        .foregroundColor(.blue)
-                        .frame(width: 40, height: 40)
-                }
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(app.name)
-                        .font(.body)
-                        .fontWeight(.semibold)
-                    Text(app.bundleIdentifier.components(separatedBy: "#").first ?? app.bundleIdentifier)
-                        .font(.caption2)
-                        .foregroundColor(.gray)
-                }
-
-                Spacer()
-
-                if app.isPlaying {
-                    HStack(spacing: 4) {
-                        Circle()
-                            .fill(Color.green)
-                            .frame(width: 8, height: 8)
-                        Text("Reproduzindo")
-                            .font(.caption2)
-                            .foregroundColor(.green)
-                    }
-                }
-
-                // Mute Button
-                Button(action: onMuteToggle) {
-                    Image(systemName: app.isMuted ? "speaker.slash.fill" : "speaker.fill")
                         .font(.system(size: 16))
-                        .foregroundColor(app.isMuted ? .red : .blue)
-                        .frame(width: 32, height: 32)
+                        .foregroundColor(.black.opacity(0.4))
                 }
-                .buttonStyle(.plain)
-                .help(app.isMuted ? "Desmutar" : "Mutar")
             }
+            .frame(width: 38, height: 38)
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
 
-            // Volume Control
-            VStack(spacing: 8) {
-                HStack {
-                    Image(systemName: "speaker.fill")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 12))
+            VStack(alignment: .leading, spacing: 6) {
+                Text(shortName)
+                    .font(.system(size: 13.5, weight: .medium))
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+
+                HStack(spacing: 8) {
+                    Button(action: onMuteToggle) {
+                        Image(systemName: app.isMuted ? "speaker.slash.fill" : "speaker.fill")
+                            .font(.system(size: 11))
+                            .foregroundColor(.white.opacity(0.4))
+                    }
+                    .buttonStyle(.plain)
 
                     Slider(value: $volume, in: 0...1)
+                        .tint(accentColor)
                         .onChange(of: volume) { _, newValue in
                             if abs(Double(app.volume) - newValue) > 0.001 {
                                 onVolumeChange(newValue)
@@ -142,42 +115,21 @@ struct AudioKitAppRow: View {
                         }
 
                     Image(systemName: "speaker.wave.3.fill")
-                        .foregroundColor(.gray)
-                        .font(.system(size: 12))
+                        .font(.system(size: 10))
+                        .foregroundColor(accentColor)
 
                     Text("\(Int(volume * 100))%")
-                        .font(.caption)
-                        .frame(width: 35, alignment: .trailing)
-                        .foregroundColor(.gray)
+                        .font(.system(size: 10))
+                        .foregroundColor(.white.opacity(0.85))
                         .monospacedDigit()
+                        .frame(width: 32, alignment: .trailing)
                 }
-
-                if app.isMuted {
-                    HStack {
-                        Image(systemName: "speaker.slash.circle.fill")
-                            .font(.system(size: 12))
-                            .foregroundColor(.red)
-                        Text("Mutado")
-                            .font(.caption2)
-                            .foregroundColor(.red)
-                        Spacer()
-                    }
-                }
-            }
-
-            // Status Indicators
-            HStack(spacing: 8) {
-                Spacer()
-
-                // PID Indicator
-                Label("\(app.processID)", systemImage: "number.circle.fill")
-                    .font(.caption2)
-                    .foregroundColor(.gray)
             }
         }
-        .padding(12)
-        .background(Color(.controlBackgroundColor))
-        .cornerRadius(8)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
+        .liquidGlassBackground(in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .glassEffectID(app.bundleIdentifier, in: namespace)
         .onAppear {
             volume = Double(app.volume)
         }
@@ -189,6 +141,40 @@ struct AudioKitAppRow: View {
     }
 }
 
+// MARK: - Liquid Glass helper com fallback
+
+private extension View {
+    /// Vidro escuro e neutro, sem tint colorido — igual ao Control Center:
+    /// o conteúdo por trás (código, fundo do app) fica visível e borrado
+    /// através do card, com só um leve realce de borda pra dar profundidade.
+    ///
+    /// `glassEffect` precisa ficar direto no conteúdo (não numa shape isolada
+    /// em `.background`), pois é essa mesma view que o `GlassEffectContainer`
+    /// combina com `.glassEffectID` para agrupar/morphar os cards — separados,
+    /// o container não resolve a camada de vidro e borra a linha inteira.
+    @ViewBuilder
+    func liquidGlassBackground(in shape: some InsettableShape) -> some View {
+        if #available(macOS 26, iOS 26, *) {
+            self.glassEffect(.regular.interactive(), in: shape)
+        } else {
+            self.background {
+                shape
+                    .fill(.ultraThinMaterial)
+                    .overlay(
+                        // Escurece um pouco o material (o Control Center não usa
+                        // o blur "cru" do sistema, ele é mais escuro/opaco)
+                        shape.fill(Color.black.opacity(0.28))
+                    )
+                    .overlay(
+                        shape.strokeBorder(Color.white.opacity(0.08), lineWidth: 0.8)
+                    )
+            }
+        }
+    }
+}
+
 #Preview {
     AudioKitAppView()
+        .environmentObject(AudioKitController.shared)
+        .background(Color(red: 0.08, green: 0.078, blue: 0.095))
 }

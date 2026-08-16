@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct MixlyApp: App {
+    init() {
+        _ = AudioKitController.shared
+    }
+
     var body: some Scene {
-        WindowGroup {
+        MenuBarExtra {
             ContentView()
+                .environmentObject(AudioKitController.shared)
+        } label: {
+            Image(systemName: "slider.horizontal.3")
         }
+        .menuBarExtraStyle(.window)
     }
 }

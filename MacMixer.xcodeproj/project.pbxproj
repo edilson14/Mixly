@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1B7295EA2BC7DEFF1341545A /* AudioUnitController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */; };
 		22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */; };
-		2DCBA82B07F54D93E8E4FD5D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429ACCF816833B98B59D90D5 /* AudioManager.swift */; };
 		343475F3AAB7F6839B51841A /* SystemVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */; };
 		351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */; };
 		48240D7201639E102852A54D /* ProcessTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */; };
@@ -38,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitAppView.swift; path = MacMixer/AudioKitAppView.swift; sourceTree = "<group>"; };
-		429ACCF816833B98B59D90D5 /* AudioManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = MacMixer/AudioManager.swift; sourceTree = "<group>"; };
 		4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProcessTap.swift; path = MacMixer/ProcessTap.swift; sourceTree = "<group>"; };
 		4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitController.swift; path = MacMixer/AudioKitController.swift; sourceTree = "<group>"; };
 		4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemVolumeView.swift; path = MacMixer/SystemVolumeView.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 				BFD7FFBBB296BBEF6823B025 /* ContentView.swift */,
 				03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */,
 				4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */,
-				429ACCF816833B98B59D90D5 /* AudioManager.swift */,
 				EC16F63E090A80ED49FFD647 /* CoreAudioManager.swift */,
 				4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */,
 				4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */,
@@ -277,7 +274,6 @@
 				570222DAEFC5E29B16E712A5 /* ContentView.swift in Sources */,
 				351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */,
 				22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */,
-				2DCBA82B07F54D93E8E4FD5D /* AudioManager.swift in Sources */,
 				77B427534831892178611FCF /* CoreAudioManager.swift in Sources */,
 				48240D7201639E102852A54D /* ProcessTap.swift in Sources */,
 				343475F3AAB7F6839B51841A /* SystemVolumeView.swift in Sources */,

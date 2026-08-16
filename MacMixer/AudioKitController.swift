@@ -9,7 +9,7 @@ import CoreAudio
 /// agrupa-os pela aplicação dona (resolvendo processos auxiliares como
 /// "Google Chrome Helper" pelo PID pai ou prefixo do bundle ID) e cria um
 /// `ProcessTap` por aplicação quando o usuário altera o volume.
-class AudioKitController: NSObject, ObservableObject {
+class AudioKitController: ObservableObject {
     static let shared = AudioKitController()
 
     @Published var apps: [AppAudioInfo] = []
@@ -20,8 +20,7 @@ class AudioKitController: NSObject, ObservableObject {
     private var previousVolumes: [String: Float] = [:]
     private var timer: Timer?
 
-    override init() {
-        super.init()
+    init() {
         refresh()
 
         timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
@@ -155,7 +154,7 @@ class AudioKitController: NSObject, ObservableObject {
             }
         }
 
-        apps = groups.compactMap { key, group -> AppAudioInfo? in
+        let entries = groups.compactMap { key, group -> AppAudioInfo? in
             // Só exibe apps que estão reproduzindo áudio agora ou que já têm
             // volume/tap ajustado pelo usuário (para não sumir da lista ao
             // pausar temporariamente e permitir religar o volume depois).
@@ -175,7 +174,14 @@ class AudioKitController: NSObject, ObservableObject {
                 processObjectIDs: group.objectIDs
             )
         }
-        .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+
+        // Quando o mesmo app tem várias instâncias (ex: duas janelas do Chrome),
+        // mostra só a mais recente (maior PID) em vez de uma linha por instância.
+        var seenNames: Set<String> = []
+        apps = entries
+            .sorted { $0.processID > $1.processID }
+            .filter { seenNames.insert($0.name).inserted }
+            .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
     }
 
     private func updatePublishedApps() {
