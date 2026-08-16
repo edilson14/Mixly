@@ -19,34 +19,36 @@ fi
 
 cd "$PROJECT_PATH"
 
-# Step 1: Clean and Build
+# Step 1: Clean and Build (let Xcode auto-sign for development)
 echo ""
 echo "📦 Step 1: Building Release..."
-xcodebuild clean -scheme "$SCHEME" > /dev/null 2>&1
+xcodebuild clean -scheme "$SCHEME" 2>&1 | grep -E "succeed|error" || true
 xcodebuild build \
     -scheme "$SCHEME" \
-    -configuration "$BUILD_CONFIG" \
-    -derivedDataPath ./build \
-    CODE_SIGN_IDENTITY="Developer ID Application" \
-    > /dev/null 2>&1
+    -configuration "$BUILD_CONFIG" 2>&1 | grep -E "succeed|error" || true
 
-APP_PATH="./build/Products/$BUILD_CONFIG/Mixly.app"
+# Find the built app
+APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -name "Mixly.app" -path "*/Release/*" -type d | head -1)
 
 if [ ! -d "$APP_PATH" ]; then
-    echo "❌ Build failed: $APP_PATH not found"
+    echo "❌ Build failed: Mixly.app not found in derived data"
     exit 1
 fi
 
-echo "✅ Build succeeded"
+echo "✅ Build succeeded: $APP_PATH"
 
 # Step 2: Notarization (optional, skip if no app-specific password)
 echo ""
 echo "🔐 Step 2: Notarization (optional)"
-echo "   If you want to notarize, run:"
+echo "   If you want to notarize for web distribution, run:"
 echo "   xcrun notarytool submit '$APP_PATH' \\"
 echo "     --apple-id '$APPLE_ID' \\"
 echo "     --team-id '$TEAM_ID' \\"
+echo "     --password 'your-app-password' \\"
 echo "     --wait"
+echo ""
+echo "   Then staple:"
+echo "   xcrun stapler staple '$APP_PATH'"
 echo ""
 
 # Step 3: Create DMG
@@ -55,21 +57,26 @@ DMG_STAGING="/tmp/mixly_dmg_staging"
 rm -rf "$DMG_STAGING"
 mkdir -p "$DMG_STAGING"
 
-cp -r "$APP_PATH" "$DMG_STAGING/"
+cp -r "$APP_PATH" "$DMG_STAGING/Mixly.app"
 ln -s /Applications "$DMG_STAGING/Applications"
 
-# Create DMG
+# Create DMG (in project root)
+cd "$PROJECT_PATH"
 hdiutil create \
     -volname "Mixly" \
     -srcfolder "$DMG_STAGING" \
     -ov -format UDZO \
     -imagekey zlib-level=9 \
-    "Mixly.dmg" \
-    > /dev/null 2>&1
+    Mixly.dmg 2>&1 | tail -2 || true
 
-# Calculate size
-DMG_SIZE=$(du -h "Mixly.dmg" | cut -f1)
-echo "✅ DMG created: Mixly.dmg ($DMG_SIZE)"
+# Verify DMG
+if [ -f "Mixly.dmg" ]; then
+    DMG_SIZE=$(du -h Mixly.dmg | cut -f1)
+    echo "✅ DMG created: Mixly.dmg ($DMG_SIZE)"
+else
+    echo "❌ DMG creation failed"
+    exit 1
+fi
 
 # Cleanup
 rm -rf "$DMG_STAGING"
@@ -81,6 +88,8 @@ echo "📊 Summary:"
 echo "   • App: $APP_PATH"
 echo "   • DMG: ./Mixly.dmg"
 echo "   • Bundle ID: sound.Mixly"
-echo "   • Team ID: $TEAM_ID"
 echo ""
-echo "📤 Next: Share ./Mixly.dmg or upload to your distribution point"
+echo "💡 Next steps:"
+echo "   1. For web distribution: Notarize the app (see Step 2 above)"
+echo "   2. Share Mixly.dmg with users or upload to your server"
+echo "   3. Users drag Mixly.app to Applications folder"
