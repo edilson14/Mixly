@@ -2,12 +2,19 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey)
+[![GitHub release](https://img.shields.io/github/v/release/edilson14/Mixly)](https://github.com/edilson14/Mixly/releases/latest)
 
 **Mixly is a per-app volume mixer for macOS** — it lets you control the volume of individual applications independently, the same way Windows' built-in volume mixer works. macOS has never shipped this natively; Mixly adds it as a small menu bar app.
 
 Playing music in one app while a video call is loud in another? Turn one down without touching the other, straight from the menu bar — no need to pause anything or dig through each app's own volume setting.
 
 ![Mixly menu bar popup — dragging Discord's volume down and Chrome's volume up independently](docs/demo.gif)
+
+## Installation
+
+Download the latest `.dmg` from [Releases](https://github.com/edilson14/Mixly/releases/latest) and drag `Mixly.app` to `/Applications`.
+
+> **Note:** This build isn't signed with an Apple Developer ID, so macOS Gatekeeper will warn on first launch. Right-click (or Control-click) `Mixly.app` and choose **Open** — or go to **System Settings → Privacy & Security** and click **Open Anyway**. You only need to do this once.
 
 ## Features
 
@@ -35,7 +42,7 @@ This means Mixly doesn't just change a volume value — it actually re-renders e
 - Xcode 26+ to build
 - "Audio Capture" permission, granted on first use via **System Settings → Privacy & Security → Screen & System Audio Recording**
 
-## Building
+## Building from source
 
 ```bash
 git clone https://github.com/edilson14/Mixly.git
