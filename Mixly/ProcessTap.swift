@@ -11,6 +11,9 @@ import os
 nonisolated final class ProcessTap: @unchecked Sendable {
     let processObjectIDs: [AudioObjectID]
 
+    /// UID do dispositivo de saída solicitado (nil = padrão do sistema).
+    let outputDeviceUID: String?
+
     private var tapID: AudioObjectID = .init(kAudioObjectUnknown)
     private var aggregateID: AudioObjectID = .init(kAudioObjectUnknown)
     private var ioProcID: AudioDeviceIOProcID?
@@ -25,12 +28,13 @@ nonisolated final class ProcessTap: @unchecked Sendable {
         }
     }
 
-    init?(processObjectIDs: [AudioObjectID], name: String, initialGain: Float) {
+    init?(processObjectIDs: [AudioObjectID], name: String, initialGain: Float, outputDeviceUID: String? = nil) {
         guard !processObjectIDs.isEmpty else { return nil }
         self.processObjectIDs = processObjectIDs
+        self.outputDeviceUID = outputDeviceUID
         gainState.withLock { $0 = max(0.0, min(1.0, initialGain)) }
 
-        guard setup(name: name) else {
+        guard setup(name: name, outputDeviceUID: outputDeviceUID) else {
             teardown()
             return nil
         }
@@ -47,7 +51,7 @@ nonisolated final class ProcessTap: @unchecked Sendable {
 
     // MARK: - Setup
 
-    private func setup(name: String) -> Bool {
+    private func setup(name: String, outputDeviceUID: String?) -> Bool {
         // 1. Criar o process tap (requer permissão de captura de áudio do sistema)
         let description = CATapDescription(stereoMixdownOfProcesses: processObjectIDs)
         description.name = "Mixly: \(name)"
@@ -62,9 +66,9 @@ nonisolated final class ProcessTap: @unchecked Sendable {
         }
         tapID = newTapID
 
-        // 2. Dispositivo agregado privado contendo a saída padrão + o tap
-        guard let outputUID = Self.defaultOutputDeviceUID() else {
-            print("Erro ao obter UID do dispositivo de saída padrão")
+        // 2. Dispositivo agregado privado contendo a saída escolhida (ou a padrão) + o tap
+        guard let outputUID = Self.resolvedOutputDeviceUID(preferred: outputDeviceUID) else {
+            print("Erro ao obter UID do dispositivo de saída")
             return false
         }
 
@@ -178,6 +182,37 @@ nonisolated final class ProcessTap: @unchecked Sendable {
     }
 
     // MARK: - Helpers
+
+    /// Resolve o UID a usar: o preferido, se ainda existir no sistema, ou o padrão como fallback.
+    private static func resolvedOutputDeviceUID(preferred: String?) -> String? {
+        if let preferred, deviceID(forUID: preferred) != nil {
+            return preferred
+        }
+        return defaultOutputDeviceUID()
+    }
+
+    private static func deviceID(forUID uid: String) -> AudioObjectID? {
+        var address = AudioObjectPropertyAddress(
+            mSelector: kAudioHardwarePropertyTranslateUIDToDevice,
+            mScope: kAudioObjectPropertyScopeGlobal,
+            mElement: kAudioObjectPropertyElementMain
+        )
+
+        var cfUID = uid as CFString
+        var deviceID = AudioObjectID(kAudioObjectUnknown)
+        var size = UInt32(MemoryLayout<AudioObjectID>.size)
+
+        let status = withUnsafeMutablePointer(to: &cfUID) { uidPtr -> OSStatus in
+            AudioObjectGetPropertyData(
+                AudioObjectID(kAudioObjectSystemObject), &address, UInt32(MemoryLayout<CFString>.size), uidPtr, &size, &deviceID
+            )
+        }
+
+        guard status == noErr, deviceID != kAudioObjectUnknown else {
+            return nil
+        }
+        return deviceID
+    }
 
     private static func defaultOutputDeviceUID() -> String? {
         var address = AudioObjectPropertyAddress(
