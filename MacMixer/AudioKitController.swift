@@ -83,7 +83,10 @@ class AudioKitController: ObservableObject {
     // MARK: - Descoberta de processos
 
     func refresh() {
-        let processes = Self.listAudioProcesses()
+        // O IO proc do tap roda no processo do próprio Mixly, então o HAL às vezes
+        // reporta o Mixly como "running output" — nunca deve aparecer na sua própria lista.
+        let ownPID = ProcessInfo.processInfo.processIdentifier
+        let processes = Self.listAudioProcesses().filter { $0.pid != ownPID }
         let regularApps = NSWorkspace.shared.runningApplications.filter { $0.activationPolicy == .regular }
         var appsByPID: [pid_t: NSRunningApplication] = [:]
         for app in regularApps {
