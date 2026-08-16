@@ -1,13 +1,13 @@
 //
-//  MacMixerUITests.swift
-//  MacMixerUITests
+//  MixlyUITests.swift
+//  MixlyUITests
 //
 //  Created by edilson14 on 23/07/26.
 //
 
 import XCTest
 
-final class MacMixerUITests: XCTestCase {
+final class MixlyUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

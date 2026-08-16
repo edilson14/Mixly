@@ -50,7 +50,7 @@ nonisolated final class ProcessTap: @unchecked Sendable {
     private func setup(name: String) -> Bool {
         // 1. Criar o process tap (requer permissão de captura de áudio do sistema)
         let description = CATapDescription(stereoMixdownOfProcesses: processObjectIDs)
-        description.name = "MacMixer: \(name)"
+        description.name = "Mixly: \(name)"
         description.isPrivate = true
         description.muteBehavior = .mutedWhenTapped
 
@@ -69,8 +69,8 @@ nonisolated final class ProcessTap: @unchecked Sendable {
         }
 
         let aggregateDescription: [String: Any] = [
-            kAudioAggregateDeviceNameKey as String: "MacMixer Tap: \(name)",
-            kAudioAggregateDeviceUIDKey as String: "sound.MacMixer.tap.\(UUID().uuidString)",
+            kAudioAggregateDeviceNameKey as String: "Mixly Tap: \(name)",
+            kAudioAggregateDeviceUIDKey as String: "sound.Mixly.tap.\(UUID().uuidString)",
             kAudioAggregateDeviceMainSubDeviceKey as String: outputUID,
             kAudioAggregateDeviceIsPrivateKey as String: true,
             kAudioAggregateDeviceIsStackedKey as String: false,

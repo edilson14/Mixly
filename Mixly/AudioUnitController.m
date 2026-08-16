@@ -1,6 +1,6 @@
 //
 //  AudioUnitController.m
-//  MacMixer
+//  Mixly
 //
 
 #include "AudioUnitController.h"

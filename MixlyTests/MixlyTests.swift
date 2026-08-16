@@ -1,14 +1,14 @@
 //
-//  MacMixerTests.swift
-//  MacMixerTests
+//  MixlyTests.swift
+//  MixlyTests
 //
 //  Created by edilson14 on 23/07/26.
 //
 
 import XCTest
-@testable import MacMixer
+@testable import Mixly
 
-final class MacMixerTests: XCTestCase {
+final class MixlyTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

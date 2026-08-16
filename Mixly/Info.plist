@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSAudioCaptureUsageDescription</key>
-	<string>MacMixer captura o áudio das aplicações para controlar o volume individual de cada uma.</string>
+	<string>Mixly captura o áudio das aplicações para controlar o volume individual de cada uma.</string>
 	<key>LSUIElement</key>
 	<true/>
 </dict>

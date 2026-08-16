@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B7295EA2BC7DEFF1341545A /* AudioUnitController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */; };
-		22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */; };
-		351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */; };
-		48240D7201639E102852A54D /* ProcessTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */; };
-		570222DAEFC5E29B16E712A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7FFBBB296BBEF6823B025 /* ContentView.swift */; };
-		595F09708FFBC25BD33A07AF /* MixlyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8586D173F679381EBE6C0F3 /* MixlyApp.swift */; };
-		B0C1B47BA43A8FE3105916FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2DD825741B8EE63AC7D76D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,16 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitAppView.swift; path = MacMixer/AudioKitAppView.swift; sourceTree = "<group>"; };
-		4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProcessTap.swift; path = MacMixer/ProcessTap.swift; sourceTree = "<group>"; };
-		4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitController.swift; path = MacMixer/AudioKitController.swift; sourceTree = "<group>"; };
 		791B90893012DCF100DC1E1F /* Mixly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		791B90963012DCF300DC1E1F /* MixlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		791B90A03012DCF300DC1E1F /* MixlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C2DD825741B8EE63AC7D76D /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MacMixer/Assets.xcassets; sourceTree = "<group>"; };
-		BFD7FFBBB296BBEF6823B025 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = MacMixer/ContentView.swift; sourceTree = "<group>"; };
-		EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AudioUnitController.m; path = MacMixer/AudioUnitController.m; sourceTree = "<group>"; };
-		F8586D173F679381EBE6C0F3 /* MixlyApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MixlyApp.swift; path = MacMixer/MixlyApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -102,13 +88,6 @@
 				791B90993012DCF300DC1E1F /* MixlyTests */,
 				791B90A33012DCF300DC1E1F /* MixlyUITests */,
 				791B908A3012DCF100DC1E1F /* Products */,
-				F8586D173F679381EBE6C0F3 /* MixlyApp.swift */,
-				BFD7FFBBB296BBEF6823B025 /* ContentView.swift */,
-				03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */,
-				4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */,
-				4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */,
-				EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */,
-				9C2DD825741B8EE63AC7D76D /* Assets.xcassets */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,7 +189,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 791B90843012DCF100DC1E1F /* Build configuration list for PBXProject "MacMixer" */;
+			buildConfigurationList = 791B90843012DCF100DC1E1F /* Build configuration list for PBXProject "Mixly" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -239,7 +218,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0C1B47BA43A8FE3105916FD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,12 +242,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				595F09708FFBC25BD33A07AF /* MixlyApp.swift in Sources */,
-				570222DAEFC5E29B16E712A5 /* ContentView.swift in Sources */,
-				351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */,
-				22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */,
-				48240D7201639E102852A54D /* ProcessTap.swift in Sources */,
-				1B7295EA2BC7DEFF1341545A /* AudioUnitController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MacMixer/MacMixer.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Mixly/Mixly.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -438,7 +410,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MacMixer/Info.plist;
+				INFOPLIST_FILE = Mixly/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,7 +424,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "MacMixer/MacMixer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mixly/Mixly-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -463,7 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MacMixer/MacMixer.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Mixly/Mixly.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -473,7 +445,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MacMixer/Info.plist;
+				INFOPLIST_FILE = Mixly/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -487,7 +459,7 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "MacMixer/MacMixer-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mixly/Mixly-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -576,7 +548,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		791B90843012DCF100DC1E1F /* Build configuration list for PBXProject "MacMixer" */ = {
+		791B90843012DCF100DC1E1F /* Build configuration list for PBXProject "Mixly" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				791B90A83012DCF300DC1E1F /* Debug */,

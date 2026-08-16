@@ -1,13 +1,13 @@
 //
-//  MacMixerUITestsLaunchTests.swift
-//  MacMixerUITests
+//  MixlyUITestsLaunchTests.swift
+//  MixlyUITests
 //
 //  Created by edilson14 on 23/07/26.
 //
 
 import XCTest
 
-final class MacMixerUITestsLaunchTests: XCTestCase {
+final class MixlyUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
