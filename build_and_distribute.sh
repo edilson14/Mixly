@@ -20,12 +20,17 @@ fi
 cd "$PROJECT_PATH"
 
 # Step 1: Clean and Build (let Xcode auto-sign for development)
+# Use "generic/platform=macOS" so xcodebuild produces a universal
+# (arm64 + x86_64) binary instead of only the host machine's architecture.
 echo ""
-echo "📦 Step 1: Building Release..."
+echo "📦 Step 1: Building Release (universal: arm64 + x86_64)..."
 xcodebuild clean -scheme "$SCHEME" 2>&1 | grep -E "succeed|error" || true
 xcodebuild build \
     -scheme "$SCHEME" \
-    -configuration "$BUILD_CONFIG" 2>&1 | grep -E "succeed|error" || true
+    -configuration "$BUILD_CONFIG" \
+    -destination "generic/platform=macOS" \
+    ONLY_ACTIVE_ARCH=NO \
+    ARCHS="arm64 x86_64" 2>&1 | grep -E "succeed|error" || true
 
 # Find the built app
 APP_PATH=$(find ~/Library/Developer/Xcode/DerivedData -name "Mixly.app" -path "*/Release/*" -type d | head -1)
