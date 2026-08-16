@@ -9,12 +9,10 @@
 /* Begin PBXBuildFile section */
 		1B7295EA2BC7DEFF1341545A /* AudioUnitController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */; };
 		22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */; };
-		343475F3AAB7F6839B51841A /* SystemVolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */; };
 		351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */; };
 		48240D7201639E102852A54D /* ProcessTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */; };
 		570222DAEFC5E29B16E712A5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7FFBBB296BBEF6823B025 /* ContentView.swift */; };
 		595F09708FFBC25BD33A07AF /* MixlyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8586D173F679381EBE6C0F3 /* MixlyApp.swift */; };
-		77B427534831892178611FCF /* CoreAudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC16F63E090A80ED49FFD647 /* CoreAudioManager.swift */; };
 		B0C1B47BA43A8FE3105916FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C2DD825741B8EE63AC7D76D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -39,14 +37,12 @@
 		03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitAppView.swift; path = MacMixer/AudioKitAppView.swift; sourceTree = "<group>"; };
 		4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProcessTap.swift; path = MacMixer/ProcessTap.swift; sourceTree = "<group>"; };
 		4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioKitController.swift; path = MacMixer/AudioKitController.swift; sourceTree = "<group>"; };
-		4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemVolumeView.swift; path = MacMixer/SystemVolumeView.swift; sourceTree = "<group>"; };
 		791B90893012DCF100DC1E1F /* Mixly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		791B90963012DCF300DC1E1F /* MixlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		791B90A03012DCF300DC1E1F /* MixlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MixlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C2DD825741B8EE63AC7D76D /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MacMixer/Assets.xcassets; sourceTree = "<group>"; };
 		BFD7FFBBB296BBEF6823B025 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = MacMixer/ContentView.swift; sourceTree = "<group>"; };
 		EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AudioUnitController.m; path = MacMixer/AudioUnitController.m; sourceTree = "<group>"; };
-		EC16F63E090A80ED49FFD647 /* CoreAudioManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreAudioManager.swift; path = MacMixer/CoreAudioManager.swift; sourceTree = "<group>"; };
 		F8586D173F679381EBE6C0F3 /* MixlyApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MixlyApp.swift; path = MacMixer/MixlyApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,9 +106,7 @@
 				BFD7FFBBB296BBEF6823B025 /* ContentView.swift */,
 				03E4FE84A809DFB7EAFB698A /* AudioKitAppView.swift */,
 				4D5FFF4A7B0D7C71CB4AD5B0 /* AudioKitController.swift */,
-				EC16F63E090A80ED49FFD647 /* CoreAudioManager.swift */,
 				4BA7CA30C6DE06FBF940810F /* ProcessTap.swift */,
-				4E9DCAA2AF259338AEACC903 /* SystemVolumeView.swift */,
 				EC0BA214D97E95713FB21FA1 /* AudioUnitController.m */,
 				9C2DD825741B8EE63AC7D76D /* Assets.xcassets */,
 			);
@@ -274,9 +268,7 @@
 				570222DAEFC5E29B16E712A5 /* ContentView.swift in Sources */,
 				351562442C27B9A4FB4C819C /* AudioKitAppView.swift in Sources */,
 				22FA93C4D180B75BFDB70839 /* AudioKitController.swift in Sources */,
-				77B427534831892178611FCF /* CoreAudioManager.swift in Sources */,
 				48240D7201639E102852A54D /* ProcessTap.swift in Sources */,
-				343475F3AAB7F6839B51841A /* SystemVolumeView.swift in Sources */,
 				1B7295EA2BC7DEFF1341545A /* AudioUnitController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
