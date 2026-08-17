@@ -14,10 +14,12 @@ class AudioKitController: ObservableObject {
 
     @Published var apps: [AppAudioInfo] = []
     @Published var lastError: String?
+    @Published var availableOutputDevices: [AudioOutputDevice] = []
 
     private var taps: [String: ProcessTap] = [:]
     private var volumes: [String: Float] = [:]
     private var previousVolumes: [String: Float] = [:]
+    private var selectedOutputDevices: [String: String] = [:]
     private var timer: Timer?
 
     init() {
@@ -40,27 +42,70 @@ class AudioKitController: ObservableObject {
     func setVolume(for bundleID: String, volume: Float) {
         let clampedVolume = max(0.0, min(1.0, volume))
         volumes[bundleID] = clampedVolume
+        syncTap(for: bundleID)
+        updatePublishedApps()
+    }
 
-        if clampedVolume >= 1.0 {
-            // Volume total: remove o tap e restaura o caminho de áudio original
+    /// Definir o dispositivo de saída para uma aplicação (nil = padrão do sistema)
+    func setOutputDevice(for bundleID: String, deviceUID: String?) {
+        if let deviceUID, !deviceUID.isEmpty {
+            selectedOutputDevices[bundleID] = deviceUID
+        } else {
+            selectedOutputDevices.removeValue(forKey: bundleID)
+        }
+        syncTap(for: bundleID)
+        updatePublishedApps()
+    }
+
+    func getOutputDevice(for bundleID: String) -> String? {
+        selectedOutputDevices[bundleID]
+    }
+
+    /// Um tap só é necessário enquanto o volume estiver abaixo de 100% ou uma
+    /// saída diferente da padrão estiver selecionada — nos dois casos o áudio
+    /// original precisa ser interceptado e re-renderizado.
+    private func needsTap(for bundleID: String) -> Bool {
+        (volumes[bundleID] ?? 1.0) < 1.0 || selectedOutputDevices[bundleID] != nil
+    }
+
+    private func syncTap(for bundleID: String) {
+        guard needsTap(for: bundleID) else {
             taps.removeValue(forKey: bundleID)?.invalidate()
-        } else if let tap = taps[bundleID] {
-            tap.gain = clampedVolume
-        } else if let app = apps.first(where: { $0.bundleIdentifier == bundleID }) {
-            if let tap = ProcessTap(
-                processObjectIDs: app.processObjectIDs,
-                name: app.name,
-                initialGain: clampedVolume
-            ) {
-                taps[bundleID] = tap
-                lastError = nil
-            } else {
-                volumes[bundleID] = 1.0
-                lastError = "Não foi possível criar o tap para \(app.name). Verifique a permissão de Gravação de Áudio do Sistema em Ajustes > Privacidade e Segurança."
-            }
+            return
         }
 
-        updatePublishedApps()
+        let desiredUID = selectedOutputDevices[bundleID]
+        if let tap = taps[bundleID] {
+            if tap.outputDeviceUID != desiredUID {
+                // Dispositivo de saída mudou: o aggregate device não é reconfigurável
+                // em tempo real, então o tap inteiro é recriado.
+                tap.invalidate()
+                taps.removeValue(forKey: bundleID)
+                createTap(for: bundleID, outputDeviceUID: desiredUID)
+            } else {
+                tap.gain = volumes[bundleID] ?? 1.0
+            }
+        } else {
+            createTap(for: bundleID, outputDeviceUID: desiredUID)
+        }
+    }
+
+    private func createTap(for bundleID: String, outputDeviceUID: String?) {
+        guard let app = apps.first(where: { $0.bundleIdentifier == bundleID }) else { return }
+
+        if let tap = ProcessTap(
+            processObjectIDs: app.processObjectIDs,
+            name: app.name,
+            initialGain: volumes[bundleID] ?? 1.0,
+            outputDeviceUID: outputDeviceUID
+        ) {
+            taps[bundleID] = tap
+            lastError = nil
+        } else {
+            volumes[bundleID] = 1.0
+            selectedOutputDevices.removeValue(forKey: bundleID)
+            lastError = "Não foi possível criar o tap para \(app.name). Verifique a permissão de Gravação de Áudio do Sistema em Ajustes > Privacidade e Segurança."
+        }
     }
 
     func muteApp(bundleID: String) {
@@ -83,6 +128,15 @@ class AudioKitController: ObservableObject {
     // MARK: - Descoberta de processos
 
     func refresh() {
+        availableOutputDevices = AudioOutputDevice.listOutputDevices()
+
+        // Se o dispositivo escolhido para algum app foi desconectado, volta pro padrão.
+        let availableUIDs = Set(availableOutputDevices.map(\.uid))
+        for (key, uid) in selectedOutputDevices where !availableUIDs.contains(uid) {
+            selectedOutputDevices.removeValue(forKey: key)
+            syncTap(for: key)
+        }
+
         // O IO proc do tap roda no processo do próprio Mixly, então o HAL às vezes
         // reporta o Mixly como "running output" — nunca deve aparecer na sua própria lista.
         let ownPID = ProcessInfo.processInfo.processIdentifier
@@ -150,7 +204,8 @@ class AudioKitController: ObservableObject {
                 if let newTap = ProcessTap(
                     processObjectIDs: group.objectIDs,
                     name: group.name,
-                    initialGain: volumes[key] ?? 1.0
+                    initialGain: volumes[key] ?? 1.0,
+                    outputDeviceUID: selectedOutputDevices[key]
                 ) {
                     taps[key] = newTap
                 }
@@ -174,7 +229,8 @@ class AudioKitController: ObservableObject {
                 volume: volume,
                 isMuted: volume == 0,
                 isPlaying: group.isPlaying,
-                processObjectIDs: group.objectIDs
+                processObjectIDs: group.objectIDs,
+                outputDeviceUID: selectedOutputDevices[key]
             )
         }
 
@@ -193,6 +249,7 @@ class AudioKitController: ObservableObject {
             let volume = volumes[app.bundleIdentifier] ?? 1.0
             updated.volume = volume
             updated.isMuted = volume == 0
+            updated.outputDeviceUID = selectedOutputDevices[app.bundleIdentifier]
             return updated
         }
     }
@@ -334,4 +391,5 @@ struct AppAudioInfo: Identifiable {
     var isMuted: Bool
     var isPlaying: Bool
     let processObjectIDs: [AudioObjectID]
+    var outputDeviceUID: String?
 }

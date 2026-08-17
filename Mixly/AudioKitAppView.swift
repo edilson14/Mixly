@@ -36,6 +36,7 @@ struct AudioKitAppView: View {
                                 app: app,
                                 accentColor: accentBlue,
                                 namespace: glassNamespace,
+                                availableDevices: controller.availableOutputDevices,
                                 onVolumeChange: { newVolume in
                                     controller.setVolume(for: app.bundleIdentifier, volume: Float(newVolume))
                                 },
@@ -45,6 +46,9 @@ struct AudioKitAppView: View {
                                     } else {
                                         controller.muteApp(bundleID: app.bundleIdentifier)
                                     }
+                                },
+                                onOutputDeviceChange: { newDeviceUID in
+                                    controller.setOutputDevice(for: app.bundleIdentifier, deviceUID: newDeviceUID)
                                 }
                             )
                         }
@@ -64,8 +68,10 @@ struct AudioKitAppRow: View {
     let app: AppAudioInfo
     let accentColor: Color
     let namespace: Namespace.ID
+    let availableDevices: [AudioOutputDevice]
     let onVolumeChange: (Double) -> Void
     let onMuteToggle: () -> Void
+    let onOutputDeviceChange: (String?) -> Void
 
     @State private var volume: Double = 1.0
 
@@ -123,6 +129,41 @@ struct AudioKitAppRow: View {
                         .foregroundColor(.white.opacity(0.85))
                         .monospacedDigit()
                         .frame(width: 32, alignment: .trailing)
+
+                    if !availableDevices.isEmpty {
+                        Menu {
+                            Button {
+                                onOutputDeviceChange(nil)
+                            } label: {
+                                if app.outputDeviceUID == nil {
+                                    Label("Padrão do sistema", systemImage: "checkmark")
+                                } else {
+                                    Text("Padrão do sistema")
+                                }
+                            }
+
+                            Divider()
+
+                            ForEach(availableDevices) { device in
+                                Button {
+                                    onOutputDeviceChange(device.uid)
+                                } label: {
+                                    if app.outputDeviceUID == device.uid {
+                                        Label(device.name, systemImage: "checkmark")
+                                    } else {
+                                        Text(device.name)
+                                    }
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "airplayaudio")
+                                .font(.system(size: 11))
+                                .foregroundColor(app.outputDeviceUID == nil ? .white.opacity(0.4) : accentColor)
+                        }
+                        .menuStyle(.borderlessButton)
+                        .fixedSize()
+                        .help("Dispositivo de saída")
+                    }
                 }
             }
         }
